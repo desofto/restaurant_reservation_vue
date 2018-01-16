@@ -1,0 +1,19 @@
+test: &default
+  adapter: postgresql
+  encoding: unicode
+  database: restaurant_reservation_test<%= ENV['TEST_ENV_NUMBER'] %>
+  pool: 16
+  reaping_frequency: 10
+  user: dmitry
+
+production:
+  <<: *default
+  database: restaurant_reservation
+
+staging:
+  <<: *default
+  database: restaurant_reservation
+
+development:
+  <<: *default
+  database: restaurant_reservation
