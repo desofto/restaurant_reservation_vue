@@ -13,6 +13,7 @@ module API
             )
           else
             user = User.create(
+              role: 'client',
               email: params[:identification][:email],
               password: params[:identification][:password],
               name: params[:identification][:name],

@@ -9,9 +9,12 @@
 
 import Vue from 'vue/dist/vue.esm'
 import Admin from '../components/admin/index.vue'
-import VueResource from 'vue-resource';
 
-Vue.use(VueResource);
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
+import VueLocalStorage from 'vue-localstorage'
+Vue.use(VueLocalStorage, { name: 'ls', bind: true })
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

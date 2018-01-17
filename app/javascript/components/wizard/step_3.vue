@@ -43,7 +43,7 @@
             <label for="password" class="control-label">Password:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input id="password" class="form-control" v-model="identification.password">
+            <input type="password" id="password" class="form-control" v-model="identification.password">
           </div>
         </div>
       </div>
@@ -69,18 +69,32 @@
     },
     data() {
       return {
-        errors: {}
+        errors: {
+          name: false,
+          phone: false,
+          email: false,
+          password: false
+        }
       }
     },
     methods: {
       checkForm() {
-        this.errors = {};
         let hasError = false;
-        if(this.identification.name.length < 1) this.errors.name = hasError = true;
-        if(this.identification.phone.length < 1) this.errors.phone = hasError = true;
-        if(this.identification.email.length < 1) this.errors.email = hasError = true;
-        if(this.identification.password.length < 1) this.errors.password = hasError = true;
+
+        this.errors.name = this.identification.name.length < 1
+        hasError = hasError || this.errors.name
+
+        this.errors.phone = this.identification.phone.length < 1
+        hasError = hasError || this.errors.phone
+
+        this.errors.email = this.identification.email.length < 1
+        hasError = hasError || this.errors.email
+
+        this.errors.password = this.identification.password.length < 1
+        hasError = hasError || this.errors.password
+
         if(hasError) return;
+
         this.$emit('next');
       }
     },

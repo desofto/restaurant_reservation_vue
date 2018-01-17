@@ -4,6 +4,7 @@ module API
     module Entities
       class User < Base
         expose :email
+        expose :role
         expose :token
       end
     end

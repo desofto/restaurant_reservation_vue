@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :reservations, dependent: :destroy
 
-  enum role: %i[admin operator]
+  enum role: %i[admin operator client]
 
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true

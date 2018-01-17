@@ -9,9 +9,9 @@
 
 import Vue from 'vue/dist/vue.esm'
 import Wizard from '../components/wizard/index.vue'
-import VueResource from 'vue-resource';
 
-Vue.use(VueResource);
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

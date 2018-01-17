@@ -5899,6 +5899,10 @@ vue-loader@^13.7.0:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
+vue-localstorage@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/vue-localstorage/-/vue-localstorage-0.6.1.tgz#b8f8f1b99ae31e140fb4bbc2235c39a825b20807"
+
 vue-resource@^1.3.5:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/vue-resource/-/vue-resource-1.3.5.tgz#021d8713e9d86a77e83169dfdd8eab6047369a71"
