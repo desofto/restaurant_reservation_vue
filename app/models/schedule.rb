@@ -3,7 +3,7 @@
 class Schedule < ApplicationRecord
   self.table_name = 'schedule'
 
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   has_many :users, through: :reservations
 
   validates :date, presence: true, uniqueness: true

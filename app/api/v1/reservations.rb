@@ -6,7 +6,7 @@ module API
           user = ::User.find_by(email: params[:identification][:email])
 
           if user.present?
-            raise 'Wrong password' unless user.authenticate(params[:identification][:password])
+            raise API::Exceptions::AuthenticationError unless user.authenticate(params[:identification][:password])
             user.update!(
               name: params[:identification][:name],
               phone: params[:identification][:phone]
@@ -70,7 +70,7 @@ module API
 
           reservation.paid! if charge.paid && charge.status == 'succeeded'
 
-          reservation
+          present reservation, with: API::V1::Entities::Reservation
         end
       end
     end

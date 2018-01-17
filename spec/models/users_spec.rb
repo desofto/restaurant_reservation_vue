@@ -23,6 +23,14 @@ describe User do
       it 'with correct password' do
         expect(user.authenticate('SomePass123')).to be_truthy
       end
+
+      it 'regenerates token' do
+        user.regenerate_token
+        token = user.token
+
+        expect(user.authenticate('SomePass123')).to be_truthy
+        expect(user.token).to_not eq token
+      end
     end
 
     context 'it is invalid' do
@@ -43,6 +51,14 @@ describe User do
 
       it 'with incorrect password' do
         expect(user.authenticate('qwe')).to be_falsey
+      end
+
+      it 'does not change the token' do
+        user.regenerate_token
+        token = user.token
+
+        expect(user.authenticate('qwe')).to be_falsey
+        expect(user.token).to eq token
       end
     end
   end

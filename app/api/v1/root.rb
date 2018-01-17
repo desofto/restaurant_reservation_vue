@@ -28,6 +28,7 @@ module API
       mount API::V1::Ping
       mount API::V1::Schedule
       mount API::V1::Reservations
+      mount API::V1::Users
     end
   end
 end

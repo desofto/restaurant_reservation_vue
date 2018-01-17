@@ -14,6 +14,7 @@ module RestaurantReservationVue
     config.active_job.queue_adapter = :sidekiq
 
     config.autoload_paths += %W(#{config.root}/app)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     config.action_cable.mount_path = '/cable'
     config.action_cable.disable_request_forgery_protection = !Rails.env.production?

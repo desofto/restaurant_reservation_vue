@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 module API
   module Exceptions
+    class AuthenticationError < StandardError; end
+
     def self.included(base)
+      base.rescue_from AuthenticationError do |e|
+        message = e.message == e.class.name ? 'Wrong email or password' : e.message
+        error!({ errors: message }, 401, 'Content-Type' => 'text/json')
+      end
+
       base.rescue_from ActiveRecord::RecordNotFound do |_e|
         error!({ message: 'Record not found.' }, 404, 'Content-Type' => 'text/json')
         # TODO: in next API ver. use this. It is more descriptive.
