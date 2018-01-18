@@ -35,7 +35,7 @@
     data() {
       return {
         token: null,
-        email: 'dmitry@desofto.com',
+        email: 'test@gmail.com',
         password: 'QWEqwe123',
         errors: {
           email: false,
