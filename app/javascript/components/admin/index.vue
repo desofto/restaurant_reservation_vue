@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <div v-if="token">
-      <a href @click.prevent="logout()">Logout</a>
+      <panel :token="token" @logout="logout()" />
     </div>
     <div v-else>
       <login @login="login($event)" />
@@ -11,6 +11,7 @@
 
 <script>
   import Login from './login.vue'
+  import Panel from './panel/index.vue'
 
   export default {
     localStorage: {
@@ -42,7 +43,8 @@
     },
 
     components: {
-      login: Login
+      login: Login,
+      panel: Panel
     }
   }
 </script>

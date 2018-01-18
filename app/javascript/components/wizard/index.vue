@@ -169,6 +169,7 @@
 
     .wizard .steps {
       width: 10rem;
+      height: 100vh;
     }
 
     .wizard .content {
