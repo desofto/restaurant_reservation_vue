@@ -63,6 +63,7 @@
         step: 1,
         reservation: {
           guests: 2,
+          seats: 0,
           date: {
             year: (new Date).getFullYear(),
             month: (new Date).getMonth() + 1,

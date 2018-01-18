@@ -6,8 +6,8 @@
       <div class="col-sm-6 col-xs-12 text-label">
         <label class="control-label">Guests:</label>
       </div>
-      <div class="col-sm-6 col-xs-12 text-uppercase">
-        {{ reservation.guests }} person
+      <div class="col-sm-6 col-xs-12 text-uppercase" :class="{ warning: reservation.seats < reservation.guests }">
+        {{ reservation.seats }} person
       </div>
     </div>
 
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <form style="margin-top: 2rem;">
+    <form style="margin-top: 2rem;" v-if="reservation.seats > 0">
       <stripe-checkout
         stripe-key="pk_test_EAj5BTkLoiJS3DWC3O6M4q78"
         product="product"
@@ -87,7 +87,7 @@
         // payload.email, payload.token
         let data = {
           reservation: {
-            guests: this.reservation.guests,
+            guests: this.reservation.seats,
             date: {
               year: this.reservation.date.year,
               month: this.reservation.date.month,
@@ -113,7 +113,7 @@
       product() {
         return {
           name: "A table reservation",
-          description: "A table for " + this.reservation.guests + " person on " + this.reservationDate(),
+          description: "A table for " + this.reservation.seats + " person on " + this.reservationDate(),
           amount: 100
         }
       },
@@ -132,6 +132,10 @@
 </script>
 
 <style scoped>
+  .form-inline .warning {
+    color: red;
+  }
+
   .group {
     width: 100%;
     margin-top: 1rem;

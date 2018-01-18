@@ -8,7 +8,7 @@
 
     <div class="box">
       <div v-if="reservation.date.hour != null" class="timetable">
-        <div v-for="hour in timetable" class="timetable-item" @click="setHour(hour)" :class="{ active: hour == reservation.date.hour }">
+        <div v-for="hour in timetable" class="timetable-item" @click="book(hour)" :class="{ active: hour == reservation.date.hour }">
           <div class="timetable-item-hour">
             {{ hour }}:00
           </div>
@@ -81,7 +81,9 @@
           });
         });
       },
-      setHour(hour) {
+      book(hour) {
+        this.reservation.seats = Math.min(this.reservation.guests, this.seats[this.reservation.date.day] || 0)
+        if(this.reservation.seats <= 0) return;
         this.reservation.date.hour = hour
       }
     },
