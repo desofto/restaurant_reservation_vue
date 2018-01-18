@@ -7,9 +7,15 @@ module API
           schedule.date.day
         end
 
-        expose :count do |schedule|
+        expose :date, if: ->(_, opt) { opt[:user].admin? || opt[:user].operator? }
+
+        expose :count, if: ->(_, opt) { opt[:user].client? } do |schedule|
           schedule.free_seats
         end
+
+        expose :count, if: ->(_, opt) { opt[:user].admin? || opt[:user].operator? }
+
+        expose :free_seats, if: ->(_, opt) { opt[:user].admin? || opt[:user].operator? }
       end
     end
   end

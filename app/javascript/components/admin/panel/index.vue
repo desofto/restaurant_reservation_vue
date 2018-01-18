@@ -10,7 +10,7 @@
       <div class="clearfix"></div>
     </div>
     <div class="sidebar">
-      <div class="sidebar-item" @click="select('calendar')" :class="{ active: selected == 'calendar' }">
+      <div class="sidebar-item" @click="select('schedule')" :class="{ active: selected == 'schedule' }">
         Calendar
       </div>
       <div class="sidebar-item" @click="select('reservations')" :class="{ active: selected == 'reservations' }">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="main">
-      <calendar :token="token" v-if="selected == 'calendar'" />
+      <schedule :token="token" v-if="selected == 'schedule'" />
       <reservations :token="token" v-if="selected == 'reservations'" />
       <account :token="token" v-if="selected == 'account'" />
     </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import Calendar from './calendar.vue'
+  import Schedule from './schedule.vue'
   import Reservations from './reservations.vue'
   import Account from './account.vue'
 
@@ -43,7 +43,7 @@
 
     data() {
       return {
-        selected: 'reservations'
+        selected: 'schedule'
       }
     },
 
@@ -62,7 +62,7 @@
     },
 
     components: {
-      calendar: Calendar,
+      schedule: Schedule,
       reservations: Reservations,
       account: Account
     }

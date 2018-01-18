@@ -25,6 +25,11 @@ module API
         get '/:year/:month' do
           present schedule(year, month), with: API::V1::Entities::Schedule
         end
+
+        desc 'Returns schedule for admin'
+        get do
+          present ::Schedule.all, with: API::V1::Entities::Schedule, user: current_user
+        end
       end
     end
   end
