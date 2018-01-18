@@ -8,7 +8,7 @@ test: &default
 
 production:
   <<: *default
-  database: restaurant_reservation
+  url: <%= ENV['DATABASE_URL'] %>
 
 staging:
   <<: *default
