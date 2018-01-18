@@ -20,7 +20,13 @@ class Reservation < ApplicationRecord
 
   validate :check_for_enought_seats_on_schedule
 
+  after_commit :broadcast
+
   private
+
+  def broadcast
+    ActionCable.server.broadcast 'reservations_channel', 'changed'
+  end
 
   def check_for_enought_seats_on_schedule
     return if guests <= schedule.free_seats

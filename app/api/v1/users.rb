@@ -19,6 +19,13 @@ module API
 
           present user, with: API::V1::Entities::User
         end
+
+        desc 'Logout user'
+        get :logout do
+          current_user.regenerate_token
+
+          'ok'
+        end
       end
     end
   end

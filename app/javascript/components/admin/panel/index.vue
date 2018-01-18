@@ -49,7 +49,11 @@
 
     methods: {
       logout() {
-        this.$emit('logout')
+        this.$http.get('/api/v1/users/logout?token=' + this.token).then(response => {
+          this.$emit('logout')
+        }, (error) => {
+          this.$emit('logout')
+        })
       },
 
       select(item) {
