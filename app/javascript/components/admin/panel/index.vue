@@ -91,20 +91,20 @@
   }
 
   .sidebar {
-    padding-top: 4rem;
-    height: 100vh;
-    width: 20rem;
     float: left;
     background-color: #d7d7d7;
     color: #4a4a4a;
+    width: 100%;
+    text-align: center;
   }
 
   .sidebar .sidebar-item {
+    padding: 0.5rem;
     cursor: pointer;
-    margin-top: -2px;
-    padding: 2rem;
     border: 2px solid #9a9a9a;
     color: #4a4a4a;
+    float: left;
+    margin-left: -2px;
   }
 
   .sidebar .sidebar-item.active {
@@ -117,5 +117,29 @@
 
   .main {
     float: left;
+  }
+
+  @media (max-width: 767px) {
+  }
+
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 992px) {
+    .sidebar {
+      width: 20rem;
+      padding-top: 4rem;
+      height: 100vh;
+    }
+
+    .sidebar .sidebar-item {
+      margin-top: -2px;
+      margin-left: auto;
+      padding: 2rem;
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1200px) {
   }
 </style>
