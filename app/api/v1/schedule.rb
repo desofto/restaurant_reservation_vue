@@ -23,12 +23,12 @@ module API
           requires :month, type: Integer
         end
         get '/:year/:month' do
-          present schedule(year, month), with: API::V1::Entities::Schedule
+          present schedule(year, month)
         end
 
         desc 'Returns schedule for admin'
         get do
-          present ::Schedule.all, with: API::V1::Entities::Schedule, user: current_user
+          present ::Schedule.all, user: current_user
         end
       end
     end

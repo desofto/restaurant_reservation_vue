@@ -17,7 +17,7 @@ module API
           raise API::Exceptions::AuthenticationError unless user&.authenticate(params[:password])
           user.regenerate_token
 
-          present user, with: API::V1::Entities::User
+          present user
         end
 
         desc 'Logout user'

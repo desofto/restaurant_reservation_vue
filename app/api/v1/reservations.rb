@@ -71,7 +71,7 @@ module API
 
           reservation.paid! if charge.paid && charge.status == 'succeeded'
 
-          present reservation, with: API::V1::Entities::Reservation
+          present reservation
         end
 
         desc 'Get list of reservations'
@@ -82,7 +82,7 @@ module API
 
           reservations = Reservation.all
 
-          present reservations, with: API::V1::Entities::Reservation
+          present reservations
         end
       end
     end

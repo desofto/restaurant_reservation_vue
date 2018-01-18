@@ -1,6 +1,27 @@
 # frozen_string_literal: true
 
 class Reservation < ApplicationRecord
+  class Entity < Base
+    expose :user_id
+
+    expose :date do |reservation|
+      {
+        year: reservation.schedule.date.year,
+        month: reservation.schedule.date.month,
+        day: reservation.schedule.date.day,
+        hour: reservation.hour
+      }
+    end
+
+    expose :guests
+
+    expose :name
+    expose :phone
+    expose :email
+
+    expose :status
+  end
+
   belongs_to :user
   belongs_to :schedule
 

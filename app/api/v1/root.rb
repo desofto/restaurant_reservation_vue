@@ -11,7 +11,7 @@ module API
 
         def current_user
           token = params[:token]
-          token.present? && User.find_by(token: token)
+          token.presence && User.find_by(token: token)
         end
 
         def authorize!(*args)

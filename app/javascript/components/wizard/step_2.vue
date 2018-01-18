@@ -77,7 +77,7 @@
         this.$http.get('/api/v1/schedule/' + year + '/' + month).then(response => {
           this.seats = {}
           response.body.forEach(day => {
-            this.seats[day.day] = day.count;
+            this.seats[day.day] = day.free_seats;
           });
         });
       },

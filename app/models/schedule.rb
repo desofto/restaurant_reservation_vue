@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class Schedule < ApplicationRecord
+  class Entity < Base
+    expose :day do |schedule|
+      schedule.date.day
+    end
+
+    expose :free_seats, if: ->(_, opt) { !(opt[:user]&.admin? || opt[:user]&.operator?) }
+
+    expose :date, :count, :free_seats,
+      if: ->(_, opt) { opt[:user]&.admin? || opt[:user]&.operator? }
+  end
+
   self.table_name = 'schedule'
 
   has_many :reservations, dependent: :destroy

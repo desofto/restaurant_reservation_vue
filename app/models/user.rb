@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+  class Entity < Base
+    expose :email
+    expose :role
+    expose :token
+  end
+
   has_secure_password validations: false
   has_secure_token :token
 
