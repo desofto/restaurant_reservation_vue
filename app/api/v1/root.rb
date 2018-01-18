@@ -10,11 +10,12 @@ module API
         end
 
         def current_user
-          # env['warden'].user
+          token = params[:token]
+          token.present? && User.find_by(token: token)
         end
 
         def authorize!(*args)
-          # ::Ability::Factory.build_ability_for(current_user).authorize!(*args)
+          ::Ability::Factory.build_ability_for(current_user).authorize!(*args)
         end
       end
 

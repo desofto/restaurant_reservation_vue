@@ -10,9 +10,7 @@ module API
       end
 
       base.rescue_from ActiveRecord::RecordNotFound do |_e|
-        error!({ message: 'Record not found.' }, 404, 'Content-Type' => 'text/json')
-        # TODO: in next API ver. use this. It is more descriptive.
-        # error!({ errors: e.message }, 404 , { 'Content-Type' => 'text/json' })
+        error!({ errors: e.message }, 404 , { 'Content-Type' => 'text/json' })
       end
 
       base.rescue_from ActiveRecord::RecordInvalid do |e|
@@ -23,10 +21,9 @@ module API
         error!({ errors: e.message }, 422, 'Content-Type' => 'text/json')
       end
 
-      # base.rescue_from Pundit::NotAuthorizedError do
-      #   error!({ message: 'You are not authorized to access' }, 422,
-      #          'Content-Type' => 'text/json')
-      # end
+      base.rescue_from CanCan::AccessDenied do
+        error!({ errors: 'You are not authorized to access' }, 422, 'Content-Type' => 'text/json')
+      end
     end
   end
 end

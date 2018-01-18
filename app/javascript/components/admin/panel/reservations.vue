@@ -12,6 +12,20 @@
         required: true
       }
     },
+
+    data() {
+      return {
+        reservations: []
+      }
+    },
+
+    mounted() {
+      this.$http.get('/api/v1/reservations?token=' + this.token).then(response => {
+
+      }, (error) => {
+        this.error = error
+      })
+    }
   }
 </script>
 

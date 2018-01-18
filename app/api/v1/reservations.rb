@@ -73,6 +73,17 @@ module API
 
           present reservation, with: API::V1::Entities::Reservation
         end
+
+        desc 'Get list of reservations'
+        params do
+        end
+        get do
+          authorize! :index, Reservation
+
+          reservations = Reservation.all
+
+          present reservations, with: API::V1::Entities::Reservation
+        end
       end
     end
   end

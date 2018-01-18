@@ -43,7 +43,7 @@
 
     data() {
       return {
-        selected: 'calendar'
+        selected: 'reservations'
       }
     },
 
