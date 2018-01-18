@@ -1,7 +1,7 @@
 common: &common
   adapter: redis
   url: redis://localhost:6379/1
-  channel_prefix: tickets
+  channel_prefix: restaurant-reservation-vue
 
 development:
   <<: *common
@@ -10,4 +10,4 @@ test:
   <<: *common
 
 production:
-  <<: *common
+  adapter: async
