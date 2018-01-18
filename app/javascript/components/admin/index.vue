@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
-    <div v-if="token">
-      <panel :token="token" @logout="logout()" />
+    <div v-if="user && (user.role == 'admin' || user.role == 'operator')">
+      <panel :user="user" @logout="logout()" />
     </div>
     <div v-else>
       <login @login="login($event)" />
@@ -15,30 +15,30 @@
 
   export default {
     localStorage: {
-      token: {
-        type: String,
-        default: ''
+      user: {
+        type: Object,
+        default: {}
       }
     },
 
     data() {
       return {
-        token: this.$ls.get('token')
+        user: this.$ls.get('user')
       }
     },
 
     methods: {
-      setToken(token) {
-        this.token = token
-        this.$ls.set('token', this.token)
+      setUser(user) {
+        this.user = user
+        this.$ls.set('user', this.user)
       },
 
-      login(token) {
-        this.setToken(token)
+      login(user) {
+        this.setUser(user)
       },
 
       logout() {
-        this.setToken('')
+        this.setUser('')
       }
     },
 

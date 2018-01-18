@@ -1,5 +1,9 @@
 <template>
   <div class="reservations">
+    <div v-if="error" class="alert alert-warning">
+      {{ error }}
+    </div>
+
     <div class="panel panel-default table-bordered">
       <div class="panel-heading">Reservations</div>
       <table class="table table-bordered table-striped table-hover">
@@ -33,20 +37,21 @@
 <script>
   export default {
     props: {
-      token: {
-        type: String,
+      user: {
+        type: Object,
         required: true
       }
     },
 
     data() {
       return {
+        error: null,
         reservations: []
       }
     },
 
     mounted() {
-      App.cable.subscriptions.create({ channel: 'ReservationsChannel', token: this.token }, {
+      App.cable.subscriptions.create({ channel: 'ReservationsChannel', token: this.user.token }, {
         received: (data) => {
           this.load_reservations()
         }
@@ -61,10 +66,10 @@
       },
 
       load_reservations() {
-        this.$http.get('/api/v1/reservations?token=' + this.token).then(response => {
+        this.$http.get('/api/v1/reservations?token=' + this.user.token).then(response => {
           this.reservations = response.body
         }, (error) => {
-          this.error = error
+          this.error = error.body.errors
         })
       }
     }

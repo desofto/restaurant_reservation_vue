@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   class Entity < Base
+    expose :name do |user|
+      user.name.presence || user.email
+    end
     expose :email
     expose :role
     expose :token

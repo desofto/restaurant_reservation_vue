@@ -21,9 +21,9 @@
       </div>
     </div>
     <div class="main">
-      <schedule :token="token" v-if="selected == 'schedule'" />
-      <reservations :token="token" v-if="selected == 'reservations'" />
-      <account :token="token" v-if="selected == 'account'" />
+      <schedule :user="user" v-if="selected == 'schedule'" />
+      <reservations :user="user" v-if="selected == 'reservations'" />
+      <account :user="user" v-if="selected == 'account'" />
     </div>
   </div>
 </template>
@@ -35,21 +35,21 @@
 
   export default {
     props: {
-      token: {
-        type: String,
+      user: {
+        type: Object,
         required: true
       }
     },
 
     data() {
       return {
-        selected: 'schedule'
+        selected: 'account'
       }
     },
 
     methods: {
       logout() {
-        this.$http.get('/api/v1/users/logout?token=' + this.token).then(response => {
+        this.$http.get('/api/v1/users/logout?token=' + this.user.token).then(response => {
           this.$emit('logout')
         }, (error) => {
           this.$emit('logout')

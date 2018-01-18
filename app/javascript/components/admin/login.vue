@@ -65,11 +65,7 @@
         }
 
         this.$http.post('/api/v1/users', data).then(response => {
-          if(['admin', 'operator'].includes(response.body.role)) {
-            this.$emit('login', response.body.token)
-          } else {
-            this.error('Restricted area')
-          }
+          this.$emit('login', response.body)
         }, (error) => {
           this.error(error.body.errors)
         })

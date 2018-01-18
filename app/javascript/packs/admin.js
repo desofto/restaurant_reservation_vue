@@ -13,8 +13,8 @@ import Admin from '../components/admin/index.vue'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
-import VueLocalStorage from 'vue-localstorage'
-Vue.use(VueLocalStorage, { name: 'ls', bind: true })
+import VueLocalStorage from 'vue-ls'
+Vue.use(VueLocalStorage, { namespace: 'restaurant_reservation' })
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

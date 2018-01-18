@@ -30,7 +30,27 @@ module API
         get :logout do
           current_user.regenerate_token
 
-          'ok'
+          :ok
+        end
+
+        route_param :id do
+          helpers do
+            def user
+              ::User.find(params[:id])
+            end
+          end
+
+          desc 'Delete user'
+          params do
+            requires :id, type: Integer
+          end
+          delete do
+            authorize! :destroy, ::User
+
+            user.destroy!
+
+            :ok
+          end
         end
       end
     end
