@@ -3,11 +3,17 @@ module API
     class Users < Grape::API
       helpers do
         def user
-          User.find_by(email: params[:email])
+          ::User.find_by(email: params[:email])
         end
       end
 
       resources :users do
+        get do
+          authorize! :index, ::User
+
+          present User.where(role: %i[admin operator])
+        end
+
         desc 'Authenticate the user'
         params do
           requires :email, type: String

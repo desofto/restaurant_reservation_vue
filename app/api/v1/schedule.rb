@@ -28,6 +28,8 @@ module API
 
         desc 'Returns schedule for admin'
         get do
+          authorize! :index, ::Schedule
+
           present ::Schedule.all, user: current_user
         end
       end

@@ -54,7 +54,7 @@ module API
           requires :token, type: String
         end
         post do
-          reservation = Reservation.create!(
+          reservation = ::Reservation.create!(
             user: user,
             schedule: schedule,
             hour: params[:reservation][:date][:hour],
@@ -78,7 +78,7 @@ module API
         params do
         end
         get do
-          authorize! :index, Reservation
+          authorize! :index, ::Reservation
 
           reservations = Reservation.all
 
