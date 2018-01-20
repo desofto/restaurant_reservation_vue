@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   mount API::Root => '/api/'
 
+  get '/',      to: 'home#index'
+  get '/user',  to: 'user#index'
   get '/admin', to: 'admin#index'
 
   constraints(UserSubdomain) do
