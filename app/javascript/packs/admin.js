@@ -8,13 +8,17 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import Vue from 'vue/dist/vue.esm'
-import Admin from '../components/admin/index.vue'
+
+import Vuex from 'vuex'
+Vue.use(Vuex)
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
 import VueLocalStorage from 'vue-ls'
 Vue.use(VueLocalStorage, { namespace: 'restaurant_reservation' })
+
+import Admin from '../components/admin/index.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({

@@ -24,7 +24,7 @@
     </div>
 
     <div class="btn-next">
-      <button class="btn text-uppercase" @click="$emit('next')" v-if="this.reservation.date && this.reservation.date.hour">
+      <button class="btn text-uppercase" @click="$emit('next')" v-if="reservation.date && reservation.date.hour">
         Next
       </button>
     </div>
@@ -32,63 +32,80 @@
 </template>
 
 <script>
-  import Calendar from '../calendar.vue';
+  import Calendar from '../calendar.vue'
 
   export default {
-    props: {
-      reservation: {
-        type: Object,
-        required: true
-      }
-    },
     data() {
       return {
-        year: this.reservation.date.year,
-        month: this.reservation.date.month,
+        year: null,
+        month: null,
         seats: [],
         timetable: [11, 12, 13, 14, 15, 16]
       }
     },
-    mounted() {
-      this.updateSeats(this.year, this.month);
+
+    computed: {
+      reservation() {
+        return this.$store.state.reservation
+      }
     },
+
+    mounted() {
+      this.year = this.reservation.date.year
+      this.month = this.reservation.date.month
+      this.updateSeats(this.year, this.month)
+    },
+
     methods: {
       setDate(day, month, year) {
-        this.reservation.date = {
+        this.$store.commit('reservation/date', {
           year: year,
           month: month,
           day: day,
           hour: 0
-        };
+        })
       },
+
+      setHour(hour) {
+        this.$store.commit('reservation/date', {
+          year: this.reservation.date.year,
+          month: this.reservation.date.month,
+          day: this.reservation.date.day,
+          hour: hour
+        })
+      },
+
       getStatus(day) {
         if(this.seats[day] >= this.reservation.guests) {
-          return '<i class="fa fa-circle-o"></i>';
+          return '<i class="fa fa-circle-o"></i>'
         } else if(this.seats[day] > 0) {
-          return '<i class="fa fa-sort-asc"></i>';
+          return '<i class="fa fa-sort-asc"></i>'
         } else {
-          return '--';
+          return '--'
         }
       },
+
       updateSeats(year, month, resetHour = false) {
-        this.year = year;
-        this.month = month;
+        this.year = year
+        this.month = month
         if(resetHour) {
-          this.reservation.date.hour = null;
+          this.setHour(null)
         }
         this.$http.get('/api/v1/schedule/' + year + '/' + month).then(response => {
           this.seats = {}
           response.body.forEach(day => {
-            this.seats[day.day] = day.free_seats;
-          });
-        });
+            this.seats[day.day] = day.free_seats
+          })
+        })
       },
+
       book(hour) {
-        this.reservation.seats = Math.min(this.reservation.guests, this.seats[this.reservation.date.day] || 0)
-        if(this.reservation.seats <= 0) return;
-        this.reservation.date.hour = hour
+        this.$store.commit('reservation/seats', Math.min(this.reservation.guests, this.seats[this.reservation.date.day] || 0))
+        if(this.reservation.seats <= 0) return
+        this.setHour(hour)
       }
     },
+
     components: {
       calendar: Calendar
     }

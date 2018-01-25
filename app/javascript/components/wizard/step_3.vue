@@ -9,7 +9,7 @@
             <label for="name" class="form-control-label">Name:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input id="name" class="form-control" v-model="identification.name" :class="{ 'is-invalid': errors.name }">
+            <input id="name" class="form-control" v-model="name" :class="{ 'is-invalid': errors.name }">
           </div>
         </div>
       </div>
@@ -19,7 +19,7 @@
             <label for="phone" class="form-control-label">Phone number:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input id="phone" class="form-control" v-model="identification.phone" :class="{ 'is-invalid': errors.phone }">
+            <input id="phone" class="form-control" v-model="phone" :class="{ 'is-invalid': errors.phone }">
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
             <label for="email" class="form-control-label">Email:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input id="email" class="form-control" v-model="identification.email" :class="{ 'is-invalid': errors.email }">
+            <input id="email" class="form-control" v-model="email" :class="{ 'is-invalid': errors.email }">
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
             <label for="password" class="form-control-label">Password:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input type="password" id="password" class="form-control" v-model="identification.password" :class="{ 'is-invalid': errors.password }">
+            <input type="password" id="password" class="form-control" v-model="password" :class="{ 'is-invalid': errors.password }">
           </div>
         </div>
       </div>
@@ -62,13 +62,9 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
-    props: {
-      identification: {
-        type: Object,
-        required: true
-      }
-    },
     data() {
       return {
         errors: {
@@ -79,25 +75,48 @@
         }
       }
     },
+
+    computed: {
+      name: {
+        get() { return this.$store.state.identification.name },
+        set(value) { this.$store.commit('identification/name', value) }
+      },
+
+      phone: {
+        get() { return this.$store.state.identification.phone },
+        set(value) { this.$store.commit('identification/phone', value) }
+      },
+
+      email: {
+        get() { return this.$store.state.identification.email },
+        set(value) { this.$store.commit('identification/email', value) }
+      },
+
+      password: {
+        get() { return this.$store.state.identification.password },
+        set(value) { this.$store.commit('identification/password', value) }
+      }
+    },
+
     methods: {
       checkForm() {
-        let hasError = false;
+        let hasError = false
 
-        this.errors.name = this.identification.name.length < 1
+        this.errors.name = this.name.length < 1
         hasError = hasError || this.errors.name
 
-        this.errors.phone = this.identification.phone.length < 1
+        this.errors.phone = this.phone.length < 1
         hasError = hasError || this.errors.phone
 
-        this.errors.email = this.identification.email.length < 1
+        this.errors.email = this.email.length < 1
         hasError = hasError || this.errors.email
 
-        this.errors.password = this.identification.password.length < 1
+        this.errors.password = this.password.length < 1
         hasError = hasError || this.errors.password
 
-        if(hasError) return;
+        if(hasError) return
 
-        this.$emit('next');
+        this.$emit('next')
       }
     },
   }

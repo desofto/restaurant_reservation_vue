@@ -64,23 +64,22 @@
 </template>
 
 <script>
-  import { StripeCheckout } from 'vue-stripe';
-  import { Bus } from 'vue-stripe';
+  import { StripeCheckout } from 'vue-stripe'
+  import { Bus } from 'vue-stripe'
 
   export default {
-    props: {
-      reservation: {
-        type: Object,
-        required: true
-      },
-      identification: {
-        type: Object,
-        required: true
+    data() {
+      return {
       }
     },
 
-    data() {
-      return {
+    computed: {
+      reservation() {
+        return this.$store.state.reservation
+      },
+
+      identification() {
+        return this.$store.state.identification
       }
     },
 
@@ -106,9 +105,9 @@
           token: payload.token
         }
         this.$http.post('/api/v1/reservations', data).then(response => {
-          alert('paid');
-        });
-      });
+          alert('paid')
+        })
+      })
     },
 
     calculated: {
@@ -123,7 +122,7 @@
 
     methods: {
       reservationDate() {
-        return (new Date(this.reservation.date.year, this.reservation.date.month-1, this.reservation.date.day)).toLocaleString("en-us", { year: "numeric", month: "long", day: "2-digit" });
+        return (new Date(this.reservation.date.year, this.reservation.date.month-1, this.reservation.date.day)).toLocaleString("en-us", { year: "numeric", month: "long", day: "2-digit" })
       }
     },
 

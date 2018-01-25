@@ -47,15 +47,15 @@
       }
     },
     mounted() {
-      this.showMore = this.current_guests > 8;
+      this.showMore = this.current_guests > 8
     },
     methods: {
       setGuests(guests) {
-        this.current_guests = guests;
+        this.current_guests = guests
         this.$emit('update', guests)
       },
       toggleShowMore() {
-        this.showMore = !this.showMore;
+        this.showMore = !this.showMore
       }
     }
   }
@@ -74,7 +74,7 @@
     cursor: pointer;
     width: 4rem;
     height: 4rem;
-    padding: 0.5rem;
+    padding: 0.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
     margin-right: 1rem;
@@ -113,6 +113,7 @@
     .grid-container .grid-cell {
       width: 6rem;
       height: 6rem;
+      padding: 1rem;
     }
   }
 </style>

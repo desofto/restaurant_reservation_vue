@@ -36,16 +36,16 @@
     </div>
     <div class="content text-center">
       <div v-if="step == 1">
-        <step1 v-model="reservation.guests" @next="next()" />
+        <step1 v-model="guests" @next="next()" />
       </div>
       <div v-if="step == 2">
-        <step2 :reservation="reservation" @next="next()" />
+        <step2 @next="next()" />
       </div>
       <div v-if="step == 3">
-        <step3 :identification="identification" @next="next()" />
+        <step3 @next="next()" />
       </div>
       <div v-if="step == 4">
-        <step4 :reservation="reservation" :identification="identification" @next="next()" />
+        <step4 @next="next()" />
       </div>
     </div>
   </div>
@@ -60,34 +60,33 @@
   export default {
     data() {
       return {
-        step: 1,
-        reservation: {
-          guests: 2,
-          seats: 0,
-          date: {
-            year: (new Date).getFullYear(),
-            month: (new Date).getMonth() + 1,
-            day: (new Date).getDate(),
-            hour: null //12
-          }
+        step: 1
+      }
+    },
+
+    computed: {
+      guests: {
+        get() {
+          return this.$store.state.reservation.guests
         },
-        identification: {
-          name: '', //'John Smith',
-          phone: '', //'+1234567890',
-          email: '', //'test@gmail.com',
-          password: ''//'qweQWE123'
+
+        set(value) {
+          this.$store.commit('reservation/guests', value)
         }
       }
     },
+
     methods: {
       setStep(step) {
-        if(step > this.step) return;
-        this.step = step;
+        if(step > this.step) return
+        this.step = step
       },
+
       next() {
-        this.step++;
+        this.step++
       }
     },
+
     components: {
       step1: Step1,
       step2: Step2,
