@@ -3,61 +3,63 @@
     <h4>Your info</h4>
 
     <div class="group">
-      <div class="col-sm-6 col-xs-12 text-label">
+      <div class="pull-left col-sm-6 col-xs-12 text-label">
         <label class="control-label">Guests:</label>
       </div>
-      <div class="col-sm-6 col-xs-12 text-uppercase" :class="{ warning: reservation.seats < reservation.guests }">
+      <div class="pull-left col-sm-6 col-xs-12 text-uppercase" :class="{ warning: reservation.seats < reservation.guests }">
         {{ reservation.seats }} person
       </div>
     </div>
 
     <div class="group">
-      <div class="col-sm-6 col-xs-12 text-label">
+      <div class="pull-left col-sm-6 col-xs-12 text-label">
         <label class="control-label">Date:</label>
       </div>
-      <div class="col-sm-6 col-xs-12 text-uppercase">
+      <div class="pull-left col-sm-6 col-xs-12 text-uppercase">
         {{ reservationDate() }}
       </div>
     </div>
 
     <div class="group">
-      <div class="col-sm-6 col-xs-12 text-label">
+      <div class="pull-left col-sm-6 col-xs-12 text-label">
         <label class="control-label">Name:</label>
       </div>
-      <div class="col-sm-6 col-xs-12">
+      <div class="pull-left col-sm-6 col-xs-12">
         {{ identification.name }}
       </div>
     </div>
 
     <div class="group">
-      <div class="col-sm-6 col-xs-12 text-label">
+      <div class="pull-left col-sm-6 col-xs-12 text-label">
         <label class="control-label">Phone number:</label>
       </div>
-      <div class="col-sm-6 col-xs-12">
+      <div class="pull-left col-sm-6 col-xs-12">
         {{ identification.phone }}
       </div>
     </div>
 
     <div class="group">
-      <div class="col-sm-6 col-xs-12 text-label">
+      <div class="pull-left col-sm-6 col-xs-12 text-label">
         <label class="control-label">Email:</label>
       </div>
-      <div class="col-sm-6 col-xs-12">
+      <div class="pull-left col-sm-6 col-xs-12">
         {{ identification.email }}
       </div>
     </div>
 
-    <form style="margin-top: 2rem;" v-if="reservation.seats > 0">
-      <stripe-checkout
-        stripe-key="pk_test_EAj5BTkLoiJS3DWC3O6M4q78"
-        product="product"
-        button="Continue to pay free -&gt;"
-        button-class="btn btn-next text-uppercase"
-        locale="auto"
-        :email="identification.email"
-        on-success="broadcast">
-      </stripe-checkout>
-    </form>
+    <div class="btn-next">
+      <form style="margin-top: 2rem;" v-if="reservation.seats > 0">
+        <stripe-checkout
+          stripe-key="pk_test_EAj5BTkLoiJS3DWC3O6M4q78"
+          product="product"
+          button="Continue to pay free -&gt;"
+          button-class="btn text-uppercase"
+          locale="auto"
+          :email="identification.email"
+          on-success="broadcast">
+        </stripe-checkout>
+      </form>
+    </div>
   </div>
 </template>
 

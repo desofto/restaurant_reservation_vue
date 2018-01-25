@@ -184,11 +184,11 @@
     }
 
     .wizard .steps {
-      width: 40rem;
+      width: 30rem;
     }
 
     .wizard .content {
-      margin-left: 40rem;
+      margin-left: 30rem;
     }
   }
 
@@ -204,14 +204,23 @@
     font-weight: bold;
   }
 
-  button.btn-next {
+  .btn-next {
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .btn-next button {
     border-radius: 1rem;
     padding: 1rem 0;
     border: 2px #9a9a9a solid;
     color: white;
     font-weight: bold;
-    margin-top: 2rem;
     background-color: #a9a9a9;
     width: 22rem;
+  }
+
+  .btn-next button:hover {
+    margin-top: initial !important;
+    border-bottom-width: 2px !important;
   }
 </style>

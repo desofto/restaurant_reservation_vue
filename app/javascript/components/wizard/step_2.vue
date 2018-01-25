@@ -23,9 +23,11 @@
       </div>
     </div>
 
-    <button class="btn btn-next text-uppercase" @click="$emit('next')" v-if="this.reservation.date && this.reservation.date.hour">
-      Next
-    </button>
+    <div class="btn-next">
+      <button class="btn text-uppercase" @click="$emit('next')" v-if="this.reservation.date && this.reservation.date.hour">
+        Next
+      </button>
+    </div>
   </div>
 </template>
 
@@ -99,7 +101,6 @@
   }
 
   .timetable {
-    width: 35rem;
     margin: 2rem auto;
   }
 

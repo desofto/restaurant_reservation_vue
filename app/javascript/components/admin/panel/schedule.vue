@@ -4,8 +4,8 @@
       {{ error }}
     </div>
 
-    <div class="panel panel-default table-bordered">
-      <div class="panel-heading">Calendar</div>
+    <div class="panel panel-default" style="width: 100%">
+      <div class="panel-heading"><h1>Calendar</h1></div>
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>

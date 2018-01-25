@@ -20,9 +20,11 @@
       </div>
     </div>
 
-    <button class="btn btn-next text-uppercase" @click="$emit('next')">
-      Next
-    </button>
+    <div class="btn-next">
+      <button class="btn text-uppercase" @click="$emit('next')">
+        Next
+      </button>
+    </div>
   </div>
 </template>
 
@@ -62,16 +64,16 @@
 <style scoped>
   .grid-container {
     text-align: center;
-    padding: 2rem;
-    width: 33rem;
-    height: 17rem;
+    padding: 1.5rem;
+    width: 24rem;
+    height: 13rem;
     margin: auto;
   }
 
   .grid-container .grid-cell {
     cursor: pointer;
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
     padding: 0.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
@@ -99,5 +101,18 @@
     margin-left: auto;
     margin-right: auto;
     width: 22rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-container {
+      padding: 2rem;
+      height: 17rem;
+      width: 33rem;
+    }
+
+    .grid-container .grid-cell {
+      width: 6rem;
+      height: 6rem;
+    }
   }
 </style>

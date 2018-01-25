@@ -4,8 +4,8 @@
       {{ error }}
     </div>
 
-    <div class="panel panel-default table-bordered">
-      <div class="panel-heading">Account</div>
+    <div class="panel panel-default">
+      <div class="panel-heading"><h1>Account</h1></div>
       <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>

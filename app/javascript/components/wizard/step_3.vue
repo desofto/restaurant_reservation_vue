@@ -4,22 +4,22 @@
 
     <div class="group form-group">
       <div class="col-lg-6 col-md-12">
-        <div class="group form-group" :class="{ 'has-error': errors.name }">
+        <div class="group form-group">
           <div class="col-md-6 col-xs-12 text-label">
-            <label for="name" class="control-label">Name:</label>
+            <label for="name" class="form-control-label">Name:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input id="name" class="form-control" v-model="identification.name">
+            <input id="name" class="form-control" v-model="identification.name" :class="{ 'is-invalid': errors.name }">
           </div>
         </div>
       </div>
       <div class="col-lg-6 col-md-12">
-        <div class="group form-group" :class="{ 'has-error': errors.phone }">
+        <div class="group form-group">
           <div class="col-md-6 col-xs-12 text-label">
-            <label for="phone" class="control-label">Phone number:</label>
+            <label for="phone" class="form-control-label">Phone number:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input id="phone" class="form-control" v-model="identification.phone">
+            <input id="phone" class="form-control" v-model="identification.phone" :class="{ 'is-invalid': errors.phone }">
           </div>
         </div>
       </div>
@@ -27,23 +27,23 @@
 
     <div class="group form-group">
       <div class="col-lg-6 col-md-12">
-        <div class="group form-group" :class="{ 'has-error': errors.email }">
+        <div class="group form-group">
           <div class="col-md-6 col-xs-12 text-label">
-            <label for="email" class="control-label">Email:</label>
+            <label for="email" class="form-control-label">Email:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input id="email" class="form-control" v-model="identification.email">
+            <input id="email" class="form-control" v-model="identification.email" :class="{ 'is-invalid': errors.email }">
           </div>
         </div>
       </div>
 
       <div class="col-lg-6 col-md-12">
-        <div class="group form-group" :class="{ 'has-error': errors.password }">
+        <div class="group form-group">
           <div class="col-md-6 col-xs-12 text-label">
-            <label for="password" class="control-label">Password:</label>
+            <label for="password" class="form-control-label">Password:</label>
           </div>
           <div class="col-md-6 col-xs-12">
-            <input type="password" id="password" class="form-control" v-model="identification.password">
+            <input type="password" id="password" class="form-control" v-model="identification.password" :class="{ 'is-invalid': errors.password }">
           </div>
         </div>
       </div>
@@ -53,9 +53,11 @@
       <a>already has account?</a>
     </div>
 
-    <button style="margin-top: 2rem;" class="btn btn-next text-uppercase" @click="checkForm()">
-      Next
-    </button>
+    <div class="btn-next">
+      <button class="btn text-uppercase" @click="checkForm()">
+        Next
+      </button>
+    </div>
   </div>
 </template>
 

@@ -71,7 +71,7 @@
 
 <style scoped>
   .header {
-    background-color: #4a4a4a;
+    background-color: #212529;
     color: #d7d7d7;
     width: 100%;
     padding: 1rem;
@@ -92,7 +92,7 @@
 
   .sidebar {
     float: left;
-    background-color: #d7d7d7;
+    background-color: #212529;
     color: #4a4a4a;
     width: 100%;
     text-align: center;
@@ -101,22 +101,22 @@
   .sidebar .sidebar-item {
     padding: 0.5rem;
     cursor: pointer;
-    border: 2px solid #9a9a9a;
-    color: #4a4a4a;
+    border: 2px solid #212529;
+    color: white;
     float: left;
     margin-left: -2px;
   }
 
   .sidebar .sidebar-item.active {
-    background-color: #aaaaaa;
+    background-color: #fec810d9;
   }
 
   .sidebar .sidebar-item:hover {
-    background-color: #cacaca;
+    background-color: #fec810;
   }
 
   .main {
-    float: left;
+    padding: 1rem;
   }
 
   @media (max-width: 767px) {
@@ -128,7 +128,6 @@
   @media (min-width: 992px) {
     .sidebar {
       width: 20rem;
-      padding-top: 4rem;
       height: 100vh;
     }
 
@@ -137,6 +136,10 @@
       margin-left: auto;
       padding: 2rem;
       width: 100%;
+    }
+
+    .main {
+      margin-left: 20rem;
     }
   }
 
