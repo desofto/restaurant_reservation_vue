@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get '/',      to: 'home#index'
   get '/user',  to: 'user#index'
-  get '/admin', to: 'admin#index'
+  get '/*path', to: 'admin#index', constraints: { path: /admin.*/ }
 
   constraints(UserSubdomain) do
     root to: 'user#index'

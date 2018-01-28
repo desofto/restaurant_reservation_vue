@@ -1,32 +1,38 @@
 <template>
-  <div class="form-inline">
+  <div class="container">
     <h4>Login</h4>
 
-    <div v-if="errors.server" class="alert alert-warning">
-      {{ errors.server }}
-    </div>
+    <div class="form">
+      <div v-if="errors.server" class="group alert alert-warning">
+        {{ errors.server }}
+      </div>
 
-    <div class="group form-group" :class="{ 'has-error': errors.email }">
-      <div class="col-sm-6 col-xs-12 text-label">
-        <label for="email" class="control-label">Email:</label>
+      <div class="row form-group" :class="{ 'has-error': errors.email }">
+        <div class="col-sm-6 col-xs-12 text-label">
+          <label for="email" class="control-label">Email:</label>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <input id="email" class="form-control" v-model="email">
+        </div>
       </div>
-      <div class="col-sm-6 col-xs-12">
-        <input id="email" class="form-control" v-model="email">
+
+      <div class="row form-group" :class="{ 'has-error': errors.password }">
+        <div class="col-sm-6 col-xs-12 text-label">
+          <label for="password" class="control-label">Password:</label>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <input type="password" id="password" class="form-control" v-model="password">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="offset-sm-6 col-sm-6 col-xs-12">
+          <button class="btn btn-primary btn-block text-uppercase" @click="login()">
+            Login
+          </button>
+        </div>
       </div>
     </div>
-
-    <div class="group form-group" :class="{ 'has-error': errors.password }">
-      <div class="col-sm-6 col-xs-12 text-label">
-        <label for="password" class="control-label">Password:</label>
-      </div>
-      <div class="col-sm-6 col-xs-12">
-        <input type="password" id="password" class="form-control" v-model="password">
-      </div>
-    </div>
-
-    <button style="margin-top: 2rem;" class="btn btn-next text-uppercase" @click="login()">
-      Login
-    </button>
   </div>
 </template>
 
@@ -90,19 +96,14 @@
     font-weight: bold;
   }
 
-  .form-inline {
+  .container {
     width: auto;
-    height: 100%;
     padding-top: 1rem;
-    text-align: center;
     max-width: 40rem;
-    margin: auto;
   }
 
-  .group {
-    width: 100%;
+  .row {
     margin-top: 1rem;
-    display: inline-block;
   }
 
   .text-label {

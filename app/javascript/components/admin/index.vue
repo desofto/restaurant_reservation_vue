@@ -1,17 +1,38 @@
 <template>
   <div class="admin">
-    <div v-if="user && (user.role == 'admin' || user.role == 'operator')">
-      <panel :user="user" @logout="logout()" />
-    </div>
-    <div v-else>
-      <login @login="login($event)" />
-    </div>
+    <router-view :user="user" @login="login($event)" @logout="logout()"></router-view>
   </div>
 </template>
 
 <script>
-  import Login from './login.vue'
-  import Panel from './panel/index.vue'
+  import VueRouter from 'vue-router'
+
+  const routes = [
+    {
+      path: '/admin/login',
+      component: () => import('./login.vue')
+    },
+    {
+      path: '/admin*',
+      beforeEnter(to, from, next) {
+        router.app.$store.dispatch('authenticate').then((user) => {
+          if(user.role == 'admin' || user.role == 'operator') {
+            next()
+          } else {
+            next('/admin/login')
+          }
+        }, () => {
+          next('/admin/login')
+        })
+      },
+      component: () => import('./panel/index.vue')
+    },
+  ]
+
+  const router = new VueRouter({
+    routes,
+    mode: 'history'
+  })
 
   export default {
     localStorage: {
@@ -21,31 +42,32 @@
       }
     },
 
-    data() {
-      return {
-        user: this.$ls.get('user')
+    computed: {
+      user: {
+        get() {
+          return this.$store.state.user
+        },
+
+        set(value) {
+          this.$store.commit('login', value)
+          this.$ls.set('user', value)
+        }
       }
     },
 
     methods: {
-      setUser(user) {
-        this.user = user
-        this.$ls.set('user', this.user)
-      },
-
       login(user) {
-        this.setUser(user)
+        this.user = user
+        this.$router.push('/admin')
       },
 
       logout() {
-        this.setUser('')
+        this.$router.push('/admin/login')
+        this.user = null
       }
     },
 
-    components: {
-      login: Login,
-      panel: Panel
-    }
+    router
   }
 </script>
 

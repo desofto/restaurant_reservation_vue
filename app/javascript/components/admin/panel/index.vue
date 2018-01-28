@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="user">
     <div class="header">
       <div class="title">
         <strong>Reservation System</strong>
@@ -10,20 +10,20 @@
       <div class="clearfix"></div>
     </div>
     <div class="sidebar">
-      <div class="sidebar-item" @click="select('schedule')" :class="{ active: selected == 'schedule' }">
+      <router-link class="sidebar-item" :to="'/admin/schedule'">
         Calendar
-      </div>
-      <div class="sidebar-item" @click="select('reservations')" :class="{ active: selected == 'reservations' }">
+      </router-link>
+      <router-link class="sidebar-item" :to="'/admin/reservations'">
         Reservations
-      </div>
-      <div class="sidebar-item" @click="select('account')" :class="{ active: selected == 'account' }">
+      </router-link>
+      <router-link class="sidebar-item" :to="'/admin/account'">
         Admin Account
-      </div>
+      </router-link>
     </div>
     <div class="main">
-      <schedule :user="user" v-if="selected == 'schedule'" />
-      <reservations :user="user" v-if="selected == 'reservations'" />
-      <account :user="user" v-if="selected == 'account'" />
+      <transition name="fade">
+        <router-view :user="user"></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -33,17 +33,24 @@
   import Reservations from './reservations.vue'
   import Account from './account.vue'
 
+  import VueRouter from 'vue-router'
+
+  const routes = [
+    { path: '/admin',               redirect: '/admin/schedule' },
+    { path: '/admin/schedule',      component: Schedule },
+    { path: '/admin/reservations',  component: Reservations },
+    { path: '/admin/account',       component: Account }
+  ]
+
+  const router = new VueRouter({
+    routes,
+    mode: 'history'
+  })
+
   export default {
     props: {
       user: {
-        type: Object,
-        required: true
-      }
-    },
-
-    data() {
-      return {
-        selected: 'schedule'
+        type: Object
       }
     },
 
@@ -54,10 +61,6 @@
         }, (error) => {
           this.$emit('logout')
         })
-      },
-
-      select(item) {
-        this.selected = item
       }
     },
 
@@ -65,7 +68,9 @@
       schedule: Schedule,
       reservations: Reservations,
       account: Account
-    }
+    },
+
+    router
   }
 </script>
 
@@ -107,7 +112,7 @@
     margin-left: -2px;
   }
 
-  .sidebar .sidebar-item.active {
+  .sidebar .sidebar-item.router-link-active {
     background-color: #fec810d9;
   }
 
