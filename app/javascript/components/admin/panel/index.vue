@@ -91,10 +91,6 @@
     margin-right: 3rem;
   }
 
-  .header .logout a {
-    color: #d7d7d7;
-  }
-
   .sidebar {
     float: left;
     background-color: #212529;
