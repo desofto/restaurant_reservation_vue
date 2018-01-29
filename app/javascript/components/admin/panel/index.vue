@@ -21,7 +21,7 @@
       </router-link>
     </div>
     <div class="main">
-      <transition name="fade">
+      <transition name="bounce" mode="out-in">
         <router-view :user="user"></router-view>
       </transition>
     </div>
@@ -145,5 +145,50 @@
   }
 
   @media (min-width: 1200px) {
+  }
+
+  .bounce-enter {
+  }
+
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+
+  .bounce-enter-to {
+  }
+
+  .bounce-leave {
+    display: none;
+  }
+
+  .bounce-leave-active {
+    animation: bounce-out .2s;
+  }
+
+  .bounce-leave-to {
+  }
+
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bounce-out {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(0);
+    }
   }
 </style>
