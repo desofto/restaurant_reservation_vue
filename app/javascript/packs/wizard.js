@@ -18,6 +18,8 @@ Vue.use(VueResource)
 import Wizard from '../components/wizard/index.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
+  Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
   const store = new Vuex.Store({
     modules: {
       reservation: {
@@ -82,10 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const app = new Vue({
     el: 'app',
-    store,
     template: '<wizard />',
+
     components: {
       wizard: Wizard
-    }
+    },
+
+    store
   })
 })

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+
 module API
   module V1
     class Root < Grape::API
+      include API::Auth
       include API::Exceptions
 
       helpers do
@@ -21,7 +23,7 @@ module API
       end
 
       before do
-        # error!({ success: false, error: 'Authentication error' }, 401) unless env['warden'].authenticated?
+        raise CanCan::AccessDenied unless verified_request?
       end
 
       version 'v1', using: :path

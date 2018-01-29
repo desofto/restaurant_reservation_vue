@@ -1,5 +1,0 @@
-1. Add router
-2. Setup webpack to create 3 js packs:
-  - vuejs + vuex + vue router
-  - admin part
-  - user part

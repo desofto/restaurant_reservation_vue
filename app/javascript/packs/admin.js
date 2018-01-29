@@ -24,6 +24,8 @@ Vue.use(VueLocalStorage, { namespace: 'restaurant_reservation' })
 import Admin from '../components/admin/index.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
+  Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
   const store = new Vuex.Store({
     state: {
       user: null

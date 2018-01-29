@@ -33,6 +33,7 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
 gem 'redis', '~> 3.0'
+gem 'redis-session-store'
 
 gem 'grape'
 gem 'grape-cancan'
