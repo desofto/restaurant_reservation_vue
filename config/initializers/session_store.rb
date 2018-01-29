@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.test?
+if Rails.env.test? || Rails.env.production?
   Rails.application.config.session_store :cookie_store, key: '_restaurant_reservation_session', httponly: true
 else
   Rails.application.config.session_store :redis_session_store, key: '_restaurant_reservation_session', redis: {
