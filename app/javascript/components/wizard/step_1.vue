@@ -61,33 +61,33 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .grid-container {
     text-align: center;
     padding: 1.5rem;
     width: 24rem;
     height: 13rem;
     margin: auto;
-  }
 
-  .grid-container .grid-cell {
-    cursor: pointer;
-    width: 4rem;
-    height: 4rem;
-    padding: 0.2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
-    float: left;
-    border: 4px solid #f9f6f2;
-    border-radius: 3px;
-    background: #f9f6f2;
-    color: #a9a9a9;
-    font-size: xx-large;
-  }
+    .grid-cell {
+      cursor: pointer;
+      width: 4rem;
+      height: 4rem;
+      padding: 0.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      margin-right: 1rem;
+      float: left;
+      border: 4px solid #f9f6f2;
+      border-radius: 3px;
+      background: #f9f6f2;
+      color: #a9a9a9;
+      font-size: xx-large;
 
-  .grid-container .grid-cell.active {
-    border: 4px solid #f4a57c;
+      &.active {
+        border: 4px solid #f4a57c;
+      }
+    }
   }
 
   .show-more {

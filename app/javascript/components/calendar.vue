@@ -220,7 +220,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .vcom-calendar {
     width: 350px;
     height: auto;
@@ -232,91 +232,99 @@
 
     -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
-  }
-  .vcom-calendar .header {
-    width: 100%;
-    padding: 10px 0;
-    background-color: #2ecc71;
-  }
-  .vcom-calendar .head {
-    text-align: center;
-    font-size: 24px;
-    padding: 10px 0;
-    color: #ffffff;
-    letter-spacing: 1px;
 
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
-  }
-  .vcom-calendar .weeks {
-    display: block;
-    width: 100%;
-    overflow: auto;
-    padding: 10px 0;
-    text-align: center;
-  }
-  .vcom-calendar .weeks .week {
-    width: 14.28571%;
-    display: block;
-    color: #ffffff;
-    float: left;
-    font-size: 16px;
+    .header {
+      width: 100%;
+      padding: 10px 0;
+      background-color: #2ecc71;
+    }
 
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  .vcom-calendar .days {
-    width: 100%;
-    height: auto;
-    overflow: auto;
+    .head {
+      text-align: center;
+      font-size: 24px;
+      padding: 10px 0;
+      color: #ffffff;
+      letter-spacing: 1px;
 
-    background-color: #ffffff;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+    }
 
-    position: relative;
-  }
-  .vcom-calendar .days .day > span {
-    width: 50px;
-    display: block;
-    float: left;
-    height: 50px;
-    font-size: 12px;
+    .weeks {
+      display: block;
+      width: 100%;
+      overflow: auto;
+      padding: 10px 0;
+      text-align: center;
 
-    text-align: center;
-    line-height: 25px;
+      .week {
+        width: 14.28571%;
+        display: block;
+        color: #ffffff;
+        float: left;
+        font-size: 16px;
 
-    color: #333333;
-    background-color: #fefefe;
-    font-weight: bold;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+    }
 
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    .days {
+      width: 100%;
+      height: auto;
+      overflow: auto;
 
-    border-right: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
-  }
+      background-color: #ffffff;
 
-  .vcom-calendar .days .day .this-month-day:hover{
-    background-color: #e1e1e1;
-    cursor: pointer;
-    color: #ffffff;
-  }
+      position: relative;
 
-  .vcom-calendar .days .day .active {
-    background-color: #e6e6e6;
-  }
+      .day > span {
+        width: 50px;
+        display: block;
+        float: left;
+        height: 50px;
+        font-size: 12px;
 
-  .vcom-calendar .days .day .today {
-    border-bottom: 3px solid #2ecc71;
-    color: #2ecc71;
-  }
+        text-align: center;
+        line-height: 25px;
 
-  .vcom-calendar .days .day .not-this-month {
-    background-color: #f9f9f9;
-    color: #999999;
-  }
+        color: #333333;
+        background-color: #fefefe;
+        font-weight: bold;
 
-  .month-select {
-    cursor: pointer;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        border-right: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .day {
+        .this-month-day:hover{
+          background-color: #e1e1e1;
+          cursor: pointer;
+          color: #ffffff;
+        }
+
+        .active {
+          background-color: #e6e6e6;
+        }
+
+        .today {
+          border-bottom: 3px solid #2ecc71;
+          color: #2ecc71;
+        }
+
+        .not-this-month {
+          background-color: #f9f9f9;
+          color: #999999;
+        }
+      }
+    }
+
+    .month-select {
+      cursor: pointer;
+    }
   }
 </style>

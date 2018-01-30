@@ -112,7 +112,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .vcom-calendar {
     margin: auto;
   }
@@ -126,10 +126,10 @@
     background-color: #f9f9f9;
     margin-top: 0.5rem;
     padding: 1rem;
-  }
 
-  .timetable-item:hover, .timetable-item.active {
-    background-color: #e6e6e6;
+    &:hover, &.active {
+      background-color: #e6e6e6;
+    }
   }
 
   .timetable-item-hour {

@@ -96,98 +96,103 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .wizard {
     width: 100%;
     height: 100%;
-  }
 
-  .wizard .steps {
-    background-color: #f4a57c;
-    float: left;
-  }
+    .steps {
+      background-color: #f4a57c;
+      float: left;
 
-  .wizard .steps .step {
-    float: left;
-    padding: 0.9rem;
-  }
+      .step {
+        float: left;
+        padding: 0.9rem;
 
-  .wizard .steps .step .element {
-    float: left;
-    margin: 1rem;
-    background-color: #d9d6d6;
-    border: 4px solid #d9d6d6;
-    color: #f4a57c;
-    width: 1.7em;
-    height: 1.7em;
-    border-radius: 1.7em;
-    text-align: center;
-    font-size: 26px;
-  }
+        .element {
+          float: left;
+          margin: 1rem;
+          background-color: #d9d6d6;
+          border: 4px solid #d9d6d6;
+          color: #f4a57c;
+          width: 1.7em;
+          height: 1.7em;
+          border-radius: 1.7em;
+          text-align: center;
+          font-size: 26px;
 
-  .wizard .steps .step .element.active {
-    cursor: pointer;
-    background-color: white;
-    border: 4px solid white;
-  }
+          &.active {
+            cursor: pointer;
+            background-color: white;
+            border: 4px solid white;
+          }
+        }
 
-  .wizard .steps .step .caption {
-    color: white;
-    float: left;
-    margin-top: 2rem;
-    font-weight: bold;
-    display: none;
-  }
+        .caption {
+          color: white;
+          float: left;
+          margin-top: 2rem;
+          font-weight: bold;
+          display: none;
+        }
+      }
+    }
 
-  .wizard .content {
-    width: auto;
-    height: 100%;
-    padding-top: 1rem;
+    .content {
+      width: auto;
+      height: 100%;
+      padding-top: 1rem;
+    }
   }
 
   @media (max-width: 767px) {
-    .wizard .steps,
-    .wizard .content {
-      clear: both;
-      width: 100%;
-    }
+    .wizard {
+      .steps, .content {
+        clear: both;
+        width: 100%;
+      }
 
-    .wizard .steps .step {
-      width: 25%;
-    }
+      .steps .step {
+        width: 25%;
 
-    .wizard .steps .step .element {
-      float: none;
-      margin: auto auto;
+        .element {
+          float: none;
+          margin: auto auto;
+        }
+      }
     }
   }
 
   @media (min-width: 768px) {
-    .wizard .steps .step {
-      clear: both;
-    }
+    .wizard {
+      .steps {
+        width: 10rem;
+        height: 100vh;
 
-    .wizard .steps {
-      width: 10rem;
-      height: 100vh;
-    }
+        .step {
+          clear: both;
+        }
+      }
 
-    .wizard .content {
-      margin-left: 10rem;
+      .content {
+        margin-left: 10rem;
+      }
     }
   }
 
   @media (min-width: 992px) {
-    .wizard .steps .step .caption {
-      display: initial;
-    }
+    .wizard {
+      .steps {
+        width: 30rem;
 
-    .wizard .steps {
-      width: 30rem;
-    }
+        .step .caption {
+          display: initial;
+        }
+      }
 
-    .wizard .content {
-      margin-left: 30rem;
+      .content {
+        margin-left: 30rem;
+      }
     }
   }
 
@@ -195,7 +200,7 @@
   }
 </style>
 
-<style>
+<style lang="scss">
   .wizard .content h4 {
     text-transform: uppercase;
     text-align: center;
@@ -206,20 +211,20 @@
   .btn-next {
     margin-top: 2rem;
     width: 100%;
-  }
 
-  .btn-next button {
-    border-radius: 1rem;
-    padding: 1rem 0;
-    border: 2px #9a9a9a solid;
-    color: white;
-    font-weight: bold;
-    background-color: #a9a9a9;
-    width: 22rem;
-  }
+    button {
+      border-radius: 1rem;
+      padding: 1rem 0;
+      border: 2px #9a9a9a solid;
+      color: white;
+      font-weight: bold;
+      background-color: #a9a9a9;
+      width: 22rem;
 
-  .btn-next button:hover {
-    margin-top: initial !important;
-    border-bottom-width: 2px !important;
+      &:hover {
+        margin-top: initial !important;
+        border-bottom-width: 2px !important;
+      }
+    }
   }
 </style>

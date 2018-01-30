@@ -1,14 +1,7 @@
 <template>
   <div v-if="user">
-    <div class="header">
-      <div class="title">
-        <strong>Reservation System</strong>
-      </div>
-      <div class="logout">
-        <a href @click.prevent="logout()">Logout</a>
-      </div>
-      <div class="clearfix"></div>
-    </div>
+    <navbar :user="user" @logout="logout()" />
+
     <div class="sidebar">
       <router-link class="sidebar-item" :to="'/admin/schedule'">
         Calendar
@@ -20,6 +13,7 @@
         Admin Account
       </router-link>
     </div>
+
     <div class="main">
       <transition name="bounce" mode="out-in">
         <router-view :user="user"></router-view>
@@ -29,6 +23,7 @@
 </template>
 
 <script>
+  import Navbar from './navbar.vue'
   import Schedule from './schedule.vue'
   import Reservations from './reservations.vue'
   import Account from './account.vue'
@@ -56,15 +51,12 @@
 
     methods: {
       logout() {
-        this.$http.get('/api/v1/users/logout?token=' + this.user.token).then(response => {
-          this.$emit('logout')
-        }, (error) => {
-          this.$emit('logout')
-        })
+        this.$emit('logout')
       }
     },
 
     components: {
+      navbar: Navbar,
       schedule: Schedule,
       reservations: Reservations,
       account: Account
@@ -74,46 +66,30 @@
   }
 </script>
 
-<style scoped>
-  .header {
-    background-color: #212529;
-    color: #d7d7d7;
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .header .title {
-    float: left;
-  }
-
-  .header .logout {
-    float: right;
-    margin-right: 3rem;
-  }
-
+<style lang="scss" scoped>
   .sidebar {
     float: left;
     background-color: #212529;
     color: #4a4a4a;
     width: 100%;
     text-align: center;
-  }
 
-  .sidebar .sidebar-item {
-    padding: 0.5rem;
-    cursor: pointer;
-    border: 2px solid #212529;
-    color: white;
-    float: left;
-    margin-left: -2px;
-  }
+    .sidebar-item {
+      padding: 0.5rem;
+      cursor: pointer;
+      border: 2px solid #212529;
+      color: white;
+      float: left;
+      margin-left: -2px;
 
-  .sidebar .sidebar-item.router-link-active {
-    background-color: #fec810d9;
-  }
+      &.router-link-active {
+        background-color: #fec810d9;
+      }
 
-  .sidebar .sidebar-item:hover {
-    background-color: #fec810;
+      &:hover {
+        background-color: #fec810;
+      }
+    }
   }
 
   .main {
@@ -130,13 +106,13 @@
     .sidebar {
       width: 20rem;
       height: 100vh;
-    }
 
-    .sidebar .sidebar-item {
-      margin-top: -2px;
-      margin-left: auto;
-      padding: 2rem;
-      width: 100%;
+      .sidebar-item {
+        margin-top: -2px;
+        margin-left: auto;
+        padding: 2rem;
+        width: 100%;
+      }
     }
 
     .main {
@@ -181,13 +157,10 @@
   }
 
   @keyframes bounce-out {
-    0% {
+    from {
       transform: scale(1);
     }
-    50% {
-      transform: scale(0.5);
-    }
-    100% {
+    to {
       transform: scale(0);
     }
   }
