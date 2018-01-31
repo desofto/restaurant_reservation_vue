@@ -5,8 +5,6 @@
 </template>
 
 <script>
-  import VueRouter from 'vue-router'
-
   const routes = [
     {
       path: '/admin/login',
@@ -15,7 +13,7 @@
     {
       path: '/admin*',
       beforeEnter(to, from, next) {
-        router.app.$store.dispatch('authenticate').then((user) => {
+        router.app.$root.$store.dispatch('authenticate').then((user) => {
           if(user.role == 'admin' || user.role == 'operator') {
             next()
           } else {

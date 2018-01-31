@@ -17,3 +17,18 @@
 //= require jqBootstrapValidation
 //= require jquery.easing
 //= require_tree .
+//= require vue/dist/vue.min
+//= require vuex/dist/vuex.min
+//= require vue-ls/dist/vue-ls.min
+//= require vue-router/dist/vue-router.min
+//= require vue-resource/dist/vue-resource.min
+//qwe= require vue-stripe-checkout/dist/index
+
+Vue.use(Vuex)
+Vue.use(VueRouter)
+Vue.use(VueResource)
+Vue.use(VueLocalStorage, { namespace: 'restaurant_reservation' })
+
+document.addEventListener('DOMContentLoaded', () => {
+  Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+})

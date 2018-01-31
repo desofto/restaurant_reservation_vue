@@ -48,24 +48,20 @@
     </div>
 
     <div class="btn-next">
-      <form style="margin-top: 2rem;" v-if="reservation.seats > 0">
-        <stripe-checkout
-          stripe-key="pk_test_EAj5BTkLoiJS3DWC3O6M4q78"
-          product="product"
-          button="Continue to pay free -&gt;"
-          button-class="btn text-uppercase"
-          locale="auto"
-          :email="identification.email"
-          on-success="broadcast">
-        </stripe-checkout>
-      </form>
+      <button class="btn text-uppercase" @click="reserve()">
+        Next
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-  import { StripeCheckout } from 'vue-stripe'
-  import { Bus } from 'vue-stripe'
+  import VueStripeCheckout from 'vue-stripe-checkout'
+
+  Vue.use(VueStripeCheckout, {
+    key: 'pk_test_EAj5BTkLoiJS3DWC3O6M4q78',
+    locale: 'auto'
+  })
 
   export default {
     data() {
@@ -83,9 +79,12 @@
       }
     },
 
-    mounted() {
-      Bus.$on('vue-stripe.success', payload => {
-        // payload.email, payload.token
+    methods: {
+      reservationDate() {
+        return (new Date(this.reservation.date.year, this.reservation.date.month-1, this.reservation.date.day)).toLocaleString("en-us", { year: "numeric", month: "long", day: "2-digit" })
+      },
+
+      reserve() {
         let data = {
           reservation: {
             guests: this.reservation.seats,
@@ -101,33 +100,31 @@
             phone: this.identification.phone,
             email: this.identification.email,
             password: this.identification.password
-          },
-          token: payload.token
+          }
         }
         this.$http.post('/api/v1/reservations', data).then(response => {
-          alert('paid')
+          this.checkout(response.data)
+        }, error => {
+          alert(error.body.errors)
         })
-      })
-    },
-
-    calculated: {
-      product() {
-        return {
-          name: "A table reservation",
-          description: "A table for " + this.reservation.seats + " person on " + this.reservationDate(),
-          amount: 100
-        }
       },
-    },
 
-    methods: {
-      reservationDate() {
-        return (new Date(this.reservation.date.year, this.reservation.date.month-1, this.reservation.date.day)).toLocaleString("en-us", { year: "numeric", month: "long", day: "2-digit" })
+      checkout(reservation) {
+        let self = this
+        this.$checkout.open({
+          name: `A table for ${this.reservation.seats} person on ${this.reservationDate()}`,
+          currency: 'USD',
+          amount: 100,
+          panelLabel: 'Pay {{amount}}',
+          token(token) {
+            self.$http.post(`/api/v1/reservations/${reservation.id}/pay`, { token: token.id }).then(response => {
+              alert('Reserved')
+            }, error => {
+              alert(error.body.errors)
+            })
+          }
+        })
       }
-    },
-
-    components: {
-      'stripe-checkout': StripeCheckout
     }
   }
 </script>

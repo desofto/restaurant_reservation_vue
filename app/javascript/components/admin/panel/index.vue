@@ -28,8 +28,6 @@
   import Reservations from './reservations.vue'
   import Account from './account.vue'
 
-  import VueRouter from 'vue-router'
-
   const routes = [
     { path: '/admin',               redirect: '/admin/schedule' },
     { path: '/admin/schedule',      component: Schedule },

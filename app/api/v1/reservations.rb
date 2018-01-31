@@ -51,7 +51,6 @@ module API
             requires :email, type: String
             requires :password, type: String
           end
-          requires :token, type: String
         end
         post do
           reservation = ::Reservation.create!(
@@ -61,17 +60,36 @@ module API
             guests: params[:reservation][:guests]
           )
 
-          Stripe.api_key = 'sk_test_9ma1cKxI39scThGDobad1rLv'
-          charge = Stripe::Charge.create(
-            amount: 100,
-            currency: 'usd',
-            description: "A table for #{params[:reservation][:guests]} person on #{date}",
-            source: params[:token],
-          )
-
-          reservation.paid! if charge.paid && charge.status == 'succeeded'
-
           present reservation
+        end
+
+        route_param :id do
+          helpers do
+            def reservation
+              @reservation ||= ::Reservation.find(params[:id])
+            end
+          end
+
+          desc 'Make payment for reservation'
+          params do
+            requires :id, type: Integer
+            requires :token, type: String
+          end
+          post '/pay' do
+            unless reservation.paid?
+              Stripe.api_key = 'sk_test_9ma1cKxI39scThGDobad1rLv'
+              charge = Stripe::Charge.create(
+                amount: 100,
+                currency: 'usd',
+                description: "A table for #{reservation.guests} person on #{reservation.schedule.date}",
+                source: params[:token],
+              )
+
+              reservation.paid! if charge.paid && charge.status == 'succeeded'
+            end
+
+            present :ok
+          end
         end
 
         desc 'Get list of reservations'
