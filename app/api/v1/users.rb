@@ -28,7 +28,7 @@ module API
 
         desc 'Logout user'
         get :logout do
-          current_user.regenerate_token
+          current_user&.regenerate_token
 
           :ok
         end

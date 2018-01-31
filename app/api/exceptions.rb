@@ -22,7 +22,7 @@ module API
       end
 
       base.rescue_from CanCan::AccessDenied do
-        error!({ errors: 'You are not authorized to access' }, 422, 'Content-Type' => 'text/json')
+        error!({ errors: 'You are not authorized to access' }, 401, 'Content-Type' => 'text/json')
       end
     end
   end
