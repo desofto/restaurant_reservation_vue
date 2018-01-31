@@ -11,8 +11,8 @@ describe API::V1::Schedule, type: :api do
 
       expect(response.status).to eq 200
       expect(json.count).to eq 2
-      expect(json[0]).to include({ 'day' => 21, 'count' => 10 })
-      expect(json[1]).to include({ 'day' => 22, 'count' => 15 })
+      expect(json[0]).to include({ 'day' => 21, 'free_seats' => 10 })
+      expect(json[1]).to include({ 'day' => 22, 'free_seats' => 15 })
     end
   end
 end

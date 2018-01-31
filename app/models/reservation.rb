@@ -22,6 +22,9 @@ class Reservation < ApplicationRecord
     expose :status
   end
 
+  serialize :data, Hash
+  store_accessor :data, :hour, :guests, :name, :phone, :email
+
   belongs_to :user
   belongs_to :schedule
 
