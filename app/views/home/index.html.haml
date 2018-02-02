@@ -1,0 +1,468 @@
+= javascript_pack_tag 'index'
+= stylesheet_pack_tag 'index'
+
+%body
+  %app
+    %a#page-top
+    / Navigation
+    %nav#mainNav.navbar.navbar-expand-lg.navbar-dark.fixed-top{":class" => "{ 'navbar-shrink': scrollPosition > 100 }"}
+      .container
+        %a.navbar-brand(href="#page-top"){ '@click.prevent' => "scrollTo('#page-top')" }
+          Our restaurant
+        %button.navbar-toggler.navbar-toggler-right(type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation")
+          Menu
+          %i.fa.fa-bars
+        #navbarResponsive.collapse.navbar-collapse
+          %ul.navbar-nav.text-uppercase.ml-auto
+            %li.nav-item
+              %a.nav-link(href="user/login")
+                My reservations
+            %li.nav-item
+              %a.nav-link(href="admin")
+                Admin
+    / Header
+    %header.masthead
+      .container
+        .intro-text
+          .intro-lead-in
+            Welcome To Our Restaurant!
+          .intro-heading.text-uppercase
+            It's Nice To Meet You
+          %a.btn.btn-primary.btn-xl.text-uppercase(href="/user")
+            Reserve a table
+    / Services
+    %section#services
+      .container
+        .row
+          .col-lg-12.text-center
+            %h2.section-heading.text-uppercase
+              Services
+            %h3.section-subheading.text-muted
+              Lorem ipsum dolor sit amet consectetur.
+        .row.text-center
+          .col-md-4
+            %img.img-fluid(alt="" src="#{image_path('birthday.png')}")
+            %h4.service-heading
+              A birthday celebration
+            %p.text-muted
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+          .col-md-4
+            %img.img-fluid(alt="" src="#{image_path('party.png')}")
+            %h4.service-heading
+              A big party
+            %p.text-muted
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+          .col-md-4
+            %img.img-fluid(alt="" src="#{image_path('dating.png')}")
+            %h4.service-heading
+              Dating
+            %p.text-muted
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+    / Halls Grid
+    %section#halls.bg-light
+      .container
+        .row
+          .col-lg-12.text-center
+            %h2.section-heading.text-uppercase
+              Halls
+            %h3.section-subheading.text-muted
+              Lorem ipsum dolor sit amet consectetur.
+        .row
+          .col-md-4.col-sm-6.hall
+            %a.hall-link(data-toggle="modal" href="#hallModal1")
+              .hall-hover
+                .hall-hover-content
+                  %i.fa.fa-plus.fa-3x
+              %img.img-fluid(alt="" src="#{image_path('halls/01-thumbnail.jpg')}")
+            .hall-caption
+              %h4
+                Threads
+              %p.text-muted
+                Illustration
+          .col-md-4.col-sm-6.hall
+            %a.hall-link(data-toggle="modal" href="#hallModal2")
+              .hall-hover
+                .hall-hover-content
+                  %i.fa.fa-plus.fa-3x
+              %img.img-fluid(alt="" src="#{image_path('halls/02-thumbnail.jpg')}")
+            .hall-caption
+              %h4
+                Explore
+              %p.text-muted
+                Graphic Design
+          .col-md-4.col-sm-6.hall
+            %a.hall-link(data-toggle="modal" href="#hallModal3")
+              .hall-hover
+                .hall-hover-content
+                  %i.fa.fa-plus.fa-3x
+              %img.img-fluid(alt="" src="#{image_path('halls/03-thumbnail.jpg')}")
+            .hall-caption
+              %h4
+                Finish
+              %p.text-muted
+                Identity
+          .col-md-4.col-sm-6.hall
+            %a.hall-link(data-toggle="modal" href="#hallModal4")
+              .hall-hover
+                .hall-hover-content
+                  %i.fa.fa-plus.fa-3x
+              %img.img-fluid(alt="" src="#{image_path('halls/04-thumbnail.jpg')}")
+            .hall-caption
+              %h4
+                Lines
+              %p.text-muted
+                Branding
+          .col-md-4.col-sm-6.hall
+            %a.hall-link(data-toggle="modal" href="#hallModal5")
+              .hall-hover
+                .hall-hover-content
+                  %i.fa.fa-plus.fa-3x
+              %img.img-fluid(alt="" src="#{image_path('halls/05-thumbnail.jpg')}")
+            .hall-caption
+              %h4
+                Southwest
+              %p.text-muted
+                Website Design
+          .col-md-4.col-sm-6.hall
+            %a.hall-link(data-toggle="modal" href="#hallModal6")
+              .hall-hover
+                .hall-hover-content
+                  %i.fa.fa-plus.fa-3x
+              %img.img-fluid(alt="" src="#{image_path('halls/06-thumbnail.jpg')}")
+            .hall-caption
+              %h4
+                Window
+              %p.text-muted
+                Photography
+    / About
+    %section#about
+      .container
+        .row
+          .col-lg-12.text-center
+            %h2.section-heading.text-uppercase
+              About
+            %h3.section-subheading.text-muted
+              Lorem ipsum dolor sit amet consectetur.
+        .row
+          .col-lg-12
+            %ul.timeline
+              %li
+                .timeline-image
+                  %img.rounded-circle.img-fluid(alt="" src="#{image_path('about/1.jpg')}")
+                .timeline-panel
+                  .timeline-heading
+                    %h4
+                      2009-2011
+                    %h4.subheading
+                      Our Humble Beginnings
+                  .timeline-body
+                    %p.text-muted
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
+              %li.timeline-inverted
+                .timeline-image
+                  %img.rounded-circle.img-fluid(alt="" src="#{image_path('about/2.jpg')}")
+                .timeline-panel
+                  .timeline-heading
+                    %h4
+                      March 2011
+                    %h4.subheading
+                      An Agency is Born
+                  .timeline-body
+                    %p.text-muted
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
+              %li
+                .timeline-image
+                  %img.rounded-circle.img-fluid(alt="" src="#{image_path('about/3.jpg')}")
+                .timeline-panel
+                  .timeline-heading
+                    %h4
+                      December 2012
+                    %h4.subheading
+                      Transition to Full Service
+                  .timeline-body
+                    %p.text-muted
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
+              %li.timeline-inverted
+                .timeline-image
+                  %img.rounded-circle.img-fluid(alt="" src="#{image_path('about/4.jpg')}")
+                .timeline-panel
+                  .timeline-heading
+                    %h4
+                      July 2014
+                    %h4.subheading
+                      Phase Two Expansion
+                  .timeline-body
+                    %p.text-muted
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
+              %li.timeline-inverted
+                .timeline-image
+                  %h4
+                    Be Part
+                    %br
+                    Of Our
+                    %br
+                    Story!
+    / Team
+    %section#team.bg-light
+      .container
+        .row
+          .col-lg-12.text-center
+            %h2.section-heading.text-uppercase
+              Our Amazing Team
+            %h3.section-subheading.text-muted
+              Lorem ipsum dolor sit amet consectetur.
+        .row
+          .col-sm-4
+            .team-member
+              %img.mx-auto.rounded-circle(alt="" src="#{image_path('team/1.jpg')}")
+              %h4
+                Kay Garland
+              %p.text-muted
+                Lead Designer
+              %ul.list-inline.social-buttons
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-twitter
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-facebook
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-linkedin
+          .col-sm-4
+            .team-member
+              %img.mx-auto.rounded-circle(alt="" src="#{image_path('team/2.jpg')}")
+              %h4
+                Larry Parker
+              %p.text-muted
+                Lead Marketer
+              %ul.list-inline.social-buttons
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-twitter
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-facebook
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-linkedin
+          .col-sm-4
+            .team-member
+              %img.mx-auto.rounded-circle(alt="" src="#{image_path('team/3.jpg')}")
+              %h4
+                Diana Pertersen
+              %p.text-muted
+                Lead Developer
+              %ul.list-inline.social-buttons
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-twitter
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-facebook
+                %li.list-inline-item
+                  %a(href="#")
+                    %i.fa.fa-linkedin
+        .row
+          .col-lg-8.mx-auto.text-center
+            %p.large.text-muted
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.
+    / Clients
+    %section.py-5
+      .container
+        .row
+          .col-md-3.col-sm-6
+            %a(href="#")
+              %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('logos/envato.jpg')}")
+          .col-md-3.col-sm-6
+            %a(href="#")
+              %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('logos/designmodo.jpg')}")
+          .col-md-3.col-sm-6
+            %a(href="#")
+              %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('logos/themeforest.jpg')}")
+          .col-md-3.col-sm-6
+            %a(href="#")
+              %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('logos/creative-market.jpg')}")
+    / Footer
+    %footer
+      .container
+        .row
+          .col-md-4
+            %span.copyright
+              Copyright © DeSofto 2018
+          .col-md-4
+            %ul.list-inline.social-buttons
+              %li.list-inline-item
+                %a(href="#")
+                  %i.fa.fa-twitter
+              %li.list-inline-item
+                %a(href="#")
+                  %i.fa.fa-facebook
+              %li.list-inline-item
+                %a(href="#")
+                  %i.fa.fa-linkedin
+          .col-md-4
+            %ul.list-inline.quicklinks
+              %li.list-inline-item
+                %a(href="#")
+                  Privacy Policy
+              %li.list-inline-item
+                %a(href="#")
+                  Terms of Use
+    / Halls Modals
+    / Modal 1
+    #hallModal1.hall-modal.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .close-modal(data-dismiss="modal")
+            .lr
+              .rl
+          .container
+            .row
+              .col-lg-8.mx-auto
+                .modal-body
+                  / Project Details Go Here
+                  %h2.text-uppercase
+                    Project Name
+                  %p.item-intro.text-muted
+                    Lorem ipsum dolor sit amet consectetur.
+                  %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('halls/01-full.jpg')}")
+                  %p
+                    Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                  %ul.list-inline
+                    %li Date: January 2017
+                    %li Client: Threads
+                    %li Category: Illustration
+                  %button.btn.btn-primary(type="button" data-dismiss="modal")
+                    %i.fa.fa-times
+                    Close
+    / Modal 2
+    #hallModal2.hall-modal.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .close-modal(data-dismiss="modal")
+            .lr
+              .rl
+          .container
+            .row
+              .col-lg-8.mx-auto
+                .modal-body
+                  / Project Details Go Here
+                  %h2.text-uppercase
+                    Project Name
+                  %p.item-intro.text-muted
+                    Lorem ipsum dolor sit amet consectetur.
+                  %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('halls/02-full.jpg')}")
+                  %p
+                    Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                  %ul.list-inline
+                    %li Date: January 2017
+                    %li Client: Explore
+                    %li Category: Graphic Design
+                  %button.btn.btn-primary(type="button" data-dismiss="modal")
+                    %i.fa.fa-times
+                    Close
+    / Modal 3
+    #hallModal3.hall-modal.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .close-modal(data-dismiss="modal")
+            .lr
+              .rl
+          .container
+            .row
+              .col-lg-8.mx-auto
+                .modal-body
+                  / Project Details Go Here
+                  %h2.text-uppercase
+                    Project Name
+                  %p.item-intro.text-muted
+                    Lorem ipsum dolor sit amet consectetur.
+                  %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('halls/03-full.jpg')}")
+                  %p
+                    Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                  %ul.list-inline
+                    %li Date: January 2017
+                    %li Client: Finish
+                    %li Category: Identity
+                  %button.btn.btn-primary(type="button" data-dismiss="modal")
+                    %i.fa.fa-times
+                    Close
+    / Modal 4
+    #hallModal4.hall-modal.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .close-modal(data-dismiss="modal")
+            .lr
+              .rl
+          .container
+            .row
+              .col-lg-8.mx-auto
+                .modal-body
+                  / Project Details Go Here
+                  %h2.text-uppercase
+                    Project Name
+                  %p.item-intro.text-muted
+                    Lorem ipsum dolor sit amet consectetur.
+                  %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('halls/04-full.jpg')}")
+                  %p
+                    Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                  %ul.list-inline
+                    %li Date: January 2017
+                    %li Client: Lines
+                    %li Category: Branding
+                  %button.btn.btn-primary(type="button" data-dismiss="modal")
+                    %i.fa.fa-times
+                    Close
+    / Modal 5
+    #hallModal5.hall-modal.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .close-modal(data-dismiss="modal")
+            .lr
+              .rl
+          .container
+            .row
+              .col-lg-8.mx-auto
+                .modal-body
+                  / Project Details Go Here
+                  %h2.text-uppercase
+                    Project Name
+                  %p.item-intro.text-muted
+                    Lorem ipsum dolor sit amet consectetur.
+                  %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('halls/05-full.jpg')}")
+                  %p
+                    Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                  %ul.list-inline
+                    %li Date: January 2017
+                    %li Client: Southwest
+                    %li Category: Website Design
+                  %button.btn.btn-primary(type="button" data-dismiss="modal")
+                    %i.fa.fa-times
+                    Close
+    / Modal 6
+    #hallModal6.hall-modal.modal.fade(role="dialog" tabindex="-1" aria-hidden="true")
+      .modal-dialog
+        .modal-content
+          .close-modal(data-dismiss="modal")
+            .lr
+              .rl
+          .container
+            .row
+              .col-lg-8.mx-auto
+                .modal-body
+                  / Project Details Go Here
+                  %h2.text-uppercase
+                    Project Name
+                  %p.item-intro.text-muted
+                    Lorem ipsum dolor sit amet consectetur.
+                  %img.img-fluid.d-block.mx-auto(alt="" src="#{image_path('halls/06-full.jpg')}")
+                  %p
+                    Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
+                  %ul.list-inline
+                    %li Date: January 2017
+                    %li Client: Window
+                    %li Category: Photography
+                  %button.btn.btn-primary(type="button" data-dismiss="modal")
+                    %i.fa.fa-times
+                    Close
